@@ -1,0 +1,55 @@
+
+import sqlite3
+
+def alerta_estoque():
+    with sqlite3.connect("projeto_estoque.db") as conexao:
+        cursor = conexao.cursor()
+
+        cursor.execute("""
+            SELECT nome, quantidade
+            FROM produtos
+            WHERE quantidade < 5
+        """)
+
+        resultados = cursor.fetchall()
+
+        print("\n=== ALERTA DE ESTOQUE ===")
+
+        for produto in resultados:
+            print(f"Produto: {produto[0]} | Quantidade: {produto[1]}")
+
+def relatorio_gerencial():
+    with sqlite3.connect("projeto_estoque.db") as conexao:
+        cursor = conexao.cursor()
+
+        cursor.execute("""
+            SELECT
+                p.nome,
+                p.quantidade,
+                SUM(CASE WHEN m.tipo = 'saida' THEN m.quantidade ELSE 0 END) AS quantidade_vendida
+            FROM produtos AS p
+            LEFT JOIN movimentacoes AS m
+            ON p.id = m.id_produto
+            GROUP BY p.id, p.nome, p.quantidade
+        """)
+
+        resultados = conexao.cursor().fetchall()
+
+        print("\n=== RELATÓRIO GERENCIAL ===")
+
+        for linha in resultados:
+            print(
+                f"Produto: {linha[0]} | "
+                f"Estoque: {linha[1]} | "  
+                f"Vendidos: {linha[2]}"
+            ) 
+
+print("=== SIMULAÇÃO DO MARKETPLACE ===")
+
+alerta_estoque()
+
+relatorio_gerencial()
+
+print("\nFluxo executado com sucesso.")
+
+  
