@@ -34,7 +34,9 @@ registrar_movimentacao(): Gerencia a lógica de entradas e saídas do estoque.
 
 Validação de Saída: Implementação de uma trava de segurança que realiza uma consulta prévia do saldo antes de efetuar qualquer baixa. Se a quantidade solicitada for maior que o estoque atual, a função exibe um erro e interrompe a operação imediatamente, impedindo saldos negativos no banco de dados.
 
-Meu nome é Danilo Arthur Rodrigues da Silva e fiquei responsável pela parte de estruturação lógica do sistema, consultas inteligentes e geração de relatórios do projeto de controle de estoque.
+==
+
+Sou Danilo Arthur Rodrigues da Silva e fiquei responsável pela parte de estruturação lógica do sistema, consultas inteligentes e geração de relatórios do projeto de controle de estoque.
 
 Atuei no desenvolvimento do módulo de consultas e monitoramento do sistema, utilizando Python com a biblioteca sqlite3 para leitura e gerenciamento das informações armazenadas no banco de dados.
 
